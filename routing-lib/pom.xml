@@ -7,18 +7,14 @@
         <groupId>ru.geekbrains</groupId>
         <version>0.0.1</version>
     </parent>
-
     <groupId>ru.geekbrains.myShop</groupId>
-    <artifactId>product</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ms-product</name>
+    <artifactId>routing-lib</artifactId>
+    <version>0.0.1</version>
+    <name>routing-lib</name>
 
     <dependencies>
-        <dependency>
-            <groupId>ru.geekbrains.myShop</groupId>
-            <artifactId>core-lib</artifactId>
-            <version>0.0.1</version>
-        </dependency>
+
     </dependencies>
+
 
 </project>

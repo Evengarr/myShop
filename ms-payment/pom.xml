@@ -9,9 +9,9 @@
     </parent>
 
     <groupId>ru.geekbrains.myShop</groupId>
-    <artifactId>product</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ms-product</name>
+    <artifactId>ms-payment</artifactId>
+    <version>0.0.1</version>
+    <name>ms-payment</name>
 
     <dependencies>
         <dependency>
@@ -20,5 +20,7 @@
             <version>0.0.1</version>
         </dependency>
     </dependencies>
+
+
 
 </project>
