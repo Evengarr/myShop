@@ -1,5 +1,5 @@
 server:
-  port: 8189
+  port: 0
   servlet:
     context-path: /users
 
@@ -24,3 +24,5 @@ spring:
       enabled: true
       settings:
         web-allow-others: false
+jwt:
+  secret: asdgfsdgadfghnbadfgfdgh

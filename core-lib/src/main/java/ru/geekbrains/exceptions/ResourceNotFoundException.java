@@ -1,4 +1,4 @@
-package ru.geekbrains.core.core.exceptions;
+package ru.geekbrains.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {
