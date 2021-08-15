@@ -1,13 +1,13 @@
-package ru.geekbrains.product.Services;
+package ru.geekbrains.Services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.product.entity.Product;
-import ru.geekbrains.product.entity.ProductDto;
-import ru.geekbrains.product.repositories.ProductRepository;
+import ru.geekbrains.entity.Product;
+import ru.geekbrains.entity.ProductDto;
+import ru.geekbrains.repositories.ProductRepository;
 
 import java.util.Optional;
 
