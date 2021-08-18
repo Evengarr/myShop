@@ -41,8 +41,6 @@ public class RedisRepository implements RedisRepositoryInterface{
         return hashOperations.entries(KEY);
     }
 
-    //JedisConnectionFactory
-
     public boolean checkToken(String authorizationHeader) {
         //через CRUD(findAllToken) проганв мапу, проверить наличие токена в redis
         return true;
