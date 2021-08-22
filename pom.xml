@@ -14,8 +14,10 @@
     <version>0.0.1</version>
     <name>myShop</name>
     <description>myShop</description>
+
     <properties>
         <java.version>11</java.version>
+        <spring-cloud.version>2020.0.3</spring-cloud.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -28,11 +30,11 @@
 
         <module>core-lib</module>
         <module>routing-lib</module>
+
+        <module>eureka-server</module>
     </modules>
 
-    <dependencies>
-
-    </dependencies>
+    <dependencies></dependencies>
 
     <build>
         <plugins>
@@ -43,4 +45,15 @@
         </plugins>
     </build>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

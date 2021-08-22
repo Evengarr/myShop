@@ -8,9 +8,13 @@ create table users
 
 create table roles
 (
-    id   bigserial PRIMARY KEY,
+    id   serial PRIMARY KEY,
     name varchar(50) not null
 );
+
+insert into roles(name)
+values ('ROLE_ADMIN'),
+       ('ROLE_USER');
 
 create table users_roles
 (
