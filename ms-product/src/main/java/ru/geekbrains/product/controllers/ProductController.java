@@ -1,17 +1,16 @@
-package ru.geekbrains.controllers;
+package ru.geekbrains.product.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.Services.ProductService;
-import ru.geekbrains.entity.Product;
-import ru.geekbrains.entity.ProductDto;
-import ru.geekbrains.repositories.specifications.ProductSpecification;
-import ru.geekbrains.exceptions.ResourceNotFoundException;
+import ru.geekbrains.product.Services.ProductService;
+import ru.geekbrains.product.entity.Product;
+import ru.geekbrains.product.entity.ProductDto;
+import ru.geekbrains.product.repositories.specifications.ProductSpecification;
+import ru.geekbrains.core.exceptions.ResourceNotFoundException;
 
 @Component
 @RestController
@@ -19,11 +18,6 @@ import ru.geekbrains.exceptions.ResourceNotFoundException;
 @RequiredArgsConstructor
 public class ProductController {
 
-    /*private ProductService productService;
-    @Bean(name = "productService")
-    private ProductService productService(ProductService productService){
-        return this.productService = productService;
-    }*/
     private final ProductService productService;
 
     @GetMapping

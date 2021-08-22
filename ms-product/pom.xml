@@ -19,6 +19,11 @@
             <artifactId>core-lib</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>ru.geekbrains.boot</groupId>
+            <artifactId>spring-boot-project</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
