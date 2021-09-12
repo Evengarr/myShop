@@ -1,9 +1,6 @@
-server:
-  port: 0
-  servlet:
-    context-path: /products
-
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888
   application:
     name: ms-product
   flyway:
