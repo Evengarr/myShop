@@ -12,7 +12,7 @@ spring:
           uri: https://github.com/Evengarr/myShop
           default-label: master
           username: Evengarr
-          password: Ytrewq@951
+          password: **********
           clone-on-start: true
         native:
           search-locations: classpath:/config
