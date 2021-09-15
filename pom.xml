@@ -32,6 +32,8 @@
         <module>routing-lib</module>
 
         <module>eureka-server</module>
+
+        <module>front-server</module>
     </modules>
 
     <dependencies></dependencies>
