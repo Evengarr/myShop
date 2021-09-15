@@ -7,8 +7,8 @@ angular.module('app').controller('productsController', function ($scope, $http, 
             method: 'GET',
             params: {
                 title: $scope.filter ? $scope.filter.title : null,
-                min_price: $scope.filter ? $scope.filter.min_price : null,
-                max_price: $scope.filter ? $scope.filter.max_price : null,
+                min_cost: $scope.filter ? $scope.filter.min_cost : null,
+                max_cost: $scope.filter ? $scope.filter.max_cost : null,
                 p: pageIndex
             }
         }).then(function (response) {

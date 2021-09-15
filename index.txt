@@ -1,0 +1,10 @@
+config-server +
+core-lib +
+eureka-sever +
+front-server +
+gateway-server +
+ms-order +
+ms-payment +
+ms-product +
+ms-user +
+routing-lib +

@@ -7,36 +7,25 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "user_table")
 @Data
-@NoArgsConstructor
-@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "email")
+    @Column
     private String email;
 
-    @Column(name = "address")
-    private String address;
+    @Column
+    private String password;
 
     @ManyToMany
-    @JoinTable(name = "users_roles",
+    @JoinTable(
+            name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
-
-    @ManyToMany
-    @JoinTable(name = "users_address",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "address_id"))
-    private List<Address> addresses;
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> role;
 }

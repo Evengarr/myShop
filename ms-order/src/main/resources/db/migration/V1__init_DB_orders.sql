@@ -1,25 +1,42 @@
 create table orders
 (
-    id              bigserial PRIMARY KEY,
-    cost            double precision,
-    address         varchar(255) not null,
-    payment_status  boolean,
-    delivery_status varchar(50)
-);
-
-create table items
-(
-    id             bigserial PRIMARY KEY,
-    price_per_unit double precision,
-    price          double precision,
-    quantity       integer
+    id         bigserial PRIMARY KEY,
+    user_id    bigint,
+    cost       double precision,
+    address    varchar(255) not null,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp
 );
 
 create table orders_items
 (
-    order_id bigserial not null,
-    item_id  bigserial not null,
-    primary key (order_id, item_id),
-    foreign key (order_id) references orders (id),
-    foreign key (item_id) references items (id)
+    id               bigserial primary key,
+    order_id         bigint references orders (id),
+    product_id       bigint,
+    title            varchar(255),
+    quantity         int,
+    cost_per_product double precision,
+    cost             double precision,
+    created_at       timestamp default current_timestamp,
+    updated_at       timestamp default current_timestamp
+);
+
+create table carts
+(
+    id      UUID primary key,
+    user_id bigint,
+    cost    double precision
+);
+
+create table cart_items
+(
+    id               bigserial primary key,
+    cart_id          UUID references carts (id),
+    product_id       bigint,
+    title            varchar(255),
+    quantity         int,
+    cost_per_product double precision,
+    cost            double precision,
+    created_at       timestamp default current_timestamp,
+    updated_at       timestamp default current_timestamp
 );

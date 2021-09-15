@@ -3,11 +3,13 @@ package ru.geekbrains.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.dtos.AuthRequestDto;
-import ru.geekbrains.dtos.AuthResponseDTO;
-import ru.geekbrains.dtos.SignUpRequestDto;
+import ru.geekbrains.dto.AuthRequestDto;
+import ru.geekbrains.dto.AuthResponseDTO;
+import ru.geekbrains.dto.SignUpRequestDto;
 import ru.geekbrains.entity.User;
 import ru.geekbrains.models.UserInfo;
+import ru.geekbrains.redis.repositories.RedisRepository;
+import ru.geekbrains.repositories.JdbcRepository;
 import ru.geekbrains.services.ITokenService;
 import ru.geekbrains.services.UserService;
 
@@ -22,6 +24,15 @@ public class UserController {
 
     private final ITokenService itokenService;
 
+    private final RedisRepository redisRepository;
+
+    private final JdbcRepository jdbcRepository;
+
+    @GetMapping("/jdbc")
+    public User registerUser(@RequestParam String email) {
+        return jdbcRepository.getByEmail(email).get();
+    }
+
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public void registerUser(@RequestBody SignUpRequestDto signUpRequestDto) {
@@ -35,7 +46,7 @@ public class UserController {
     public AuthResponseDTO login(@RequestBody AuthRequestDto request) {
         User user = userService.findByLoginAndPassword(request.getEmail(), request.getPassword());
         List<String> roles = new ArrayList<>();
-        user.getRoles().forEach(role -> roles.add(role.getName()));
+        user.getRole().forEach(role -> roles.add(role.getName()));
         UserInfo userInfo = UserInfo.builder()
                 .userId(user.getId())
                 .userEmail(user.getEmail())
@@ -43,5 +54,11 @@ public class UserController {
                 .build();
         String token = itokenService.generateToken(userInfo);
         return new AuthResponseDTO(token);
+    }
+
+    @GetMapping("/logout")
+    public Boolean logout(@RequestHeader("Authorization") String token) {
+        redisRepository.saveToken(token);
+        return true;
     }
 }

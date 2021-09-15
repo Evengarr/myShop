@@ -1,46 +1,27 @@
-create table users
+create table role_table
 (
-    id       bigserial PRIMARY KEY,
-    username varchar(50) not null,
-    password varchar(30) not null,
-    email    varchar(50) not null
+    id   serial      not null
+        constraint role_table_pk
+            primary key,
+    name varchar(20) not null
 );
 
-create table roles
+create table user_table
 (
-    id   serial PRIMARY KEY,
-    name varchar(50) not null
+    id       bigserial not null
+        constraint user_table_pk
+            primary key,
+    email    varchar(50),
+    password varchar(500)
 );
-
-insert into roles(name)
-values ('ROLE_ADMIN'),
-       ('ROLE_USER');
 
 create table users_roles
 (
-    user_id bigserial not null,
-    role_id bigserial not null,
-    primary key (user_id, role_id),
-    foreign key (user_id) references users (id),
-    foreign key (role_id) references roles (id)
+    user_id bigint references user_table (id),
+    role_id int references role_table (id)
 );
 
-create table address
-(
-    id           bigserial PRIMARY KEY,
-    postcode     integer     not null,
-    country      varchar(80) not null,
-    city         varchar(80) not null,
-    street       varchar(80) not null,
-    house_number integer     not null
-);
-
-create table users_address
-(
-    user_id    bigserial not null,
-    address_id bigserial not null,
-    primary key (user_id, address_id),
-    foreign key (user_id) references users (id),
-    foreign key (address_id) references address (id)
-);
-
+insert into role_table(name)
+values ('ROLE_ADMIN');
+insert into role_table(name)
+values ('ROLE_USER');

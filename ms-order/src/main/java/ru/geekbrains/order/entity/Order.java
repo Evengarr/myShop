@@ -2,9 +2,14 @@ package ru.geekbrains.order.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,21 +21,36 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @Column(name = "cost")
     private Double cost;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "payment_status")
-    private boolean paymentStatus;
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
-    @Column(name = "delivery_status")
-    private String deliveryStatus;
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
-    @ManyToMany
-    @JoinTable(name = "orders_items",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "items_id"))
-    private Collection<OrderItem> OrderItems;
+    @OneToMany(mappedBy = "order")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<OrderItem> items;
+
+    public Order(Cart cart, Long userId, String address) {
+        this.items = new ArrayList<>();
+        this.userId = userId;
+        this.address = address;
+        this.cost = cart.getCost();
+        for (CartItem ci : cart.getItems()) {
+            OrderItem oi = new OrderItem(ci);
+            oi.setOrder(this);
+            this.items.add(oi);
+        }
+    }
 }

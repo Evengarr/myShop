@@ -10,13 +10,18 @@
 
     <groupId>ru.geekbrains.myShop</groupId>
     <artifactId>user</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>ms-user</name>
 
     <dependencies>
         <dependency>
             <groupId>ru.geekbrains.myShop</groupId>
             <artifactId>core-lib</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.geekbrains.myShop</groupId>
+            <artifactId>routing-lib</artifactId>
             <version>0.0.1</version>
         </dependency>
     </dependencies>
